@@ -1,0 +1,20 @@
+[package]
+name = "whistled_protocol"
+version = "0.0.0"
+description = "gRPC protocol for communicating rule information with the Whistled firewall daemon"
+authors = ["Aleksa Sarai <cyphar@cyphar.com>"]
+license = "LGPL-3.0+"
+readme = "README.md"
+repository = "https://github.com/cyphar/whistled"
+
+# Currently in development, don't push by accident.
+publish = false
+
+[dependencies]
+grpc = "~0.1.1"
+protobuf = "1.*"
+futures = "~0.1.13"
+futures-cpupool = "~0.1.5"
+
+[build-dependencies]
+glob = "~0.2.11"

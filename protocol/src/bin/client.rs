@@ -19,26 +19,14 @@
 extern crate whistled_protocol;
 extern crate grpc;
 
-use std::thread;
-use grpc::result::GrpcResult;
-
 use whistled_protocol::*;
 
-struct GreeterImpl;
-
-impl Greeter for GreeterImpl {
-    fn SayHello(&self, req: HelloRequest) -> GrpcResult<HelloReply> {
-        let mut r = HelloReply::new();
-        let name = req.get_name();
-        println!("greeting request from {}", name);
-        r.set_message(format!("Hello {}", name));
-        Ok(r)
-    }
-}
-
 fn main() {
-    let _server = GreeterServer::new("[::]:50051", GreeterImpl);
-    loop {
-        thread::park();
-    }
+    let client = GreeterClient::new("localhost", 50051, false).unwrap();
+
+    let mut req = HelloRequest::new();
+    req.set_name("mynameis".to_string());
+
+    let resp = client.SayHello(req);
+    println!("{:?}", resp);
 }

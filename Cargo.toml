@@ -1,10 +1,18 @@
 [package]
 name = "whistled"
-description = "Generic GNU/Linux application-level firewall daemon"
-authors = ["Aleksa Sarai <cyphar@cyphar.com>"]
 version = "0.0.0"
+description = "Generic GNU/Linux application-level firewall"
+authors = ["Aleksa Sarai <cyphar@cyphar.com>"]
 license = "GPL-3.0+"
 readme = "README.md"
 repository = "https://github.com/cyphar/whistled"
 
+# Currently in development, don't push by accident.
+publish = false
+
 [dependencies]
+whistled_protocol = { path = "protocol", version = "*" }
+grpc = "~0.1.1"
+
+[workspace]
+members = ["protocol"]
